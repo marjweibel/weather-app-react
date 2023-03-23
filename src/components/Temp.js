@@ -4,7 +4,7 @@ const Temp = () => {
   const url =
     'https://api.openweathermap.org/data/2.5/weather?lat=48.8566&lon=2.3522&appid=f4c02ebe2ba943fd42e8da0be774d68c';
 
-  const [weather1, setWeather] = useState();
+  const [weather1, setWeather] = useState({});
 
   useEffect(() => {
     fetch(url)
@@ -33,9 +33,13 @@ const Temp = () => {
 
             <div className="country">{weather1.country}</div>
           </div>
+          <div className="dateToday">
+            Today's date is: {new Date().toLocaleDateString()}
+          </div>
+
           <div className="current-time-container">
             <div className="current-time">
-              {weather1.currentTemp}
+              {Math.floor(weather1.currentTemp - (273.15).toFixed(1))}
               <span>&deg;</span>
               <div>{weather1.description}</div>
             </div>
@@ -44,14 +48,16 @@ const Temp = () => {
             <div className="max-temp">
               <div className="desc">Max Temp</div>
               <div>
-                {weather1.maxTemp} <span>&deg;</span>
+                {Math.floor(weather1.maxTemp - (273.15).toFixed(1))}
+                <span>&deg;</span>
               </div>
               <div>Max</div>
             </div>
             <div className="min-temp">
               <div className="desc">Min Temp</div>
               <div>
-                {weather1.minTemp} <span>&deg;</span>
+                {Math.floor(weather1.minTemp - (273.15).toFixed(1))}
+                <span>&deg;</span>
               </div>
               <div>Min</div>
             </div>
@@ -60,7 +66,8 @@ const Temp = () => {
             <div className="humidity">
               HUMIDITY
               <div>
-                {weather1.humidity} <span>&deg;</span>
+                {Math.floor(weather1.humidity - (273.15).toFixed(1))}
+                <span>&deg;</span>
                 <p>HIGH</p>
                 <p>LOW</p>
               </div>
@@ -70,13 +77,15 @@ const Temp = () => {
               <div className="feels-like">
                 <div className="desc">FEELS LIKE</div>
                 <div>
-                  {weather1.feelsLike} <span>&deg;</span>
+                  {Math.floor(weather1.feelsLike - (273.15).toFixed(1))}{' '}
+                  <span>&deg;</span>
                 </div>
               </div>
               <div className="pressure">
                 <div className="desc">PRESSURE</div>
                 <div>
-                  {weather1.pressure} <span> hPa</span>
+                  {Math.floor(weather1.pressure - (273.15).toFixed(1))}{' '}
+                  <span> hPa</span>
                 </div>
               </div>
             </div>
